@@ -1,0 +1,42 @@
+{
+  "name": "cloudflare-clef",
+  "description": "Marketplace for the cloudflare-clef plugin: structured decision evaluation on Cloudflare Workers AI CLEF / CLEF Flash.",
+  "description_i18n": {
+    "en": "Marketplace for the cloudflare-clef plugin: structured decision evaluation on Cloudflare Workers AI CLEF / CLEF Flash.",
+    "zh-CN": "cloudflare-clef 插件市场：基于 Cloudflare Workers AI CLEF / CLEF Flash 的结构化决策评测。"
+  },
+  "owner": {
+    "name": "TriDefender",
+    "url": "https://github.com/TriDefender"
+  },
+  "plugins": [
+    {
+      "name": "cloudflare-clef",
+      "source": "./cloudflare-clef",
+      "displayName": "Cloudflare CLEF Decisions",
+      "displayName_i18n": {
+        "en": "Cloudflare CLEF Decisions",
+        "zh-CN": "Cloudflare CLEF 决策评测"
+      },
+      "description": "Decision evaluation on Cloudflare Workers AI CLEF / CLEF Flash, exposed as the MCP tool clef_evaluate. Credentials are DPAPI-encrypted at rest.",
+      "description_i18n": {
+        "en": "Decision evaluation on Cloudflare Workers AI CLEF / CLEF Flash, exposed as the MCP tool clef_evaluate. Credentials are DPAPI-encrypted at rest.",
+        "zh-CN": "基于 Cloudflare Workers AI CLEF / CLEF Flash 的结构化决策评测 MCP 工具 clef_evaluate，凭据经 DPAPI 加密落盘。"
+      },
+      "version": "0.2.0",
+      "author": {
+        "name": "TriDefender",
+        "url": "https://github.com/TriDefender"
+      },
+      "category": "developer-tools",
+      "keywords": [
+        "cloudflare",
+        "workers-ai",
+        "clef",
+        "decision",
+        "triage",
+        "mcp"
+      ]
+    }
+  ]
+}
