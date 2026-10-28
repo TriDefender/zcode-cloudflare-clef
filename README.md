@@ -44,12 +44,12 @@ Ask the agent to use `clef_evaluate`. Questions are a map of arbitrary ids (Chin
 }
 ```
 
-Returns `{model, answers, usage}`; answers echo the original ids. Omit `model` for `clef-flash` (faster/cheaper); `clef` is stronger. Input-only pricing: 3,455 Neurons / M input tokens (clef-flash) and 21,818 / M (clef) as of 2026-10-20; Workers Free grants 10,000 Neurons per UTC day.
+Returns `{model, answers, usage}`, answers keyed by the original ids. Omit `model` for `clef-flash` (faster/cheaper); `clef` is stronger. Images attach as embedded data URLs, `{content_type,base64}` objects, or absolute local file paths (`.png/.jpg/.jpeg/.webp`) which the server reads from disk — prefer paths for real screenshots, since chat models cannot reliably emit large base64 blobs. Input-only pricing: 3,455 Neurons / M input tokens (clef-flash) and 21,818 / M (clef) as of 2026-10-20; Workers Free grants 10,000 Neurons per UTC day.
 
 ## Scope and side effects
 
 - Network access: POSTs to `https://api.cloudflare.com/client/v4/accounts/<accountId>/ai/run/@cf/cloudflare/<model>` only. No redirects, no telemetry, no retries.
-- Reads two environment-derived secrets at MCP startup; writes nothing outside the process.
+- Reads two environment-derived secrets at MCP startup; reads local image files referenced by absolute path in `state` (png/jpg/jpeg/webp, ≤ 4 MiB each) at evaluation time; writes nothing outside the process.
 - Evidence up to ~24k text bytes and up to 4 images (PNG/JPEG/WebP, 4 MiB each / 8 MiB total / 16 MP) per request; response bodies capped at 1 MiB.
 
 ## Development

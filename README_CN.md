@@ -44,12 +44,12 @@
 }
 ```
 
-返回 `{model, answers, usage}`，答案以原始 id 为键。`model` 省略时用 `clef-flash`（更快更便宜）；`clef` 更强。仅按输入计价（2026-10-20）：clef-flash 3,455 Neurons / M 输入 tokens，clef 21,818 / M；Workers Free 每天（UTC）免费 10,000 Neurons。
+返回 `{model, answers, usage}`，答案以原始 id 为键。`model` 省略时用 `clef-flash`（更快更便宜）；`clef` 更强。图片支持内嵌 data URL、`{content_type,base64}` 对象或**绝对路径本地文件**（`.png/.jpg/.jpeg/.webp`，由 server 读盘嵌入）——聊天模型无法可靠生成大段 base64，真实截图请优先用路径。仅按输入计价（2026-10-20）：clef-flash 3,455 Neurons / M 输入 tokens，clef 21,818 / M；Workers Free 每天（UTC）免费 10,000 Neurons。
 
 ## 范围与副作用
 
 - 网络访问：仅 POST `https://api.cloudflare.com/client/v4/accounts/<accountId>/ai/run/@cf/cloudflare/<model>`。无重定向、无遥测、无重试。
-- MCP 启动时读取两个来自环境的凭据；进程之外不写任何文件。
+- MCP 启动时读取两个来自环境的凭据；评测时读取 state 中以绝对路径引用的本地图片文件（仅 png/jpg/jpeg/webp，单张 ≤ 4 MiB）；进程之外不写任何文件。
 - 每次请求证据上限约 24k 文本字节与 4 张图片（PNG/JPEG/WebP，单张 4 MiB / 合计 8 MiB / 16 MP）；响应体读取上限 1 MiB。
 
 ## 开发
